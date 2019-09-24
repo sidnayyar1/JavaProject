@@ -1,0 +1,153 @@
+import java.util.Scanner;
+public class Day4Project2 {
+
+static double sum = 0;
+static int count = 0;
+static double[] marks;//initializing array
+static String[] Name;//initializing array
+static double max = 0;
+static double average = 0;
+static String name1;
+static double temp;
+public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		getInput();
+		getMarks(marks,Name);
+		sumOfMarks(marks);
+		averageOfMarks(marks);
+		maximumMarks(marks,Name);
+		studentAboveAverage();
+		nearestToAverage();
+		findName();
+		sorting();
+}
+		
+public static void getInput() {
+	Scanner input = new Scanner(System.in);
+	System.out.println("Enter the capacity of class");
+	count = input.nextInt();//inserting the capacity of class
+	marks=new double[count];
+	Name = new String[count];
+	
+}
+
+	public static void getMarks(double m[],String[] Name) {
+		
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter the marks and name of  students");
+				for(int i=0;i<count;i++) {
+			System.out.println("now enter the marks of student");
+			 m[i]=input.nextDouble();//inserting marks of students
+			 System.out.println("now enter the name of student");
+			 Name[i]=input.next();//inserting name of students
+			 }
+	}
+	
+	private static void sumOfMarks(double marks[]) {
+		// TODO Auto-generated method stub
+	 
+	 for(int i=0;i<count;i++) {
+		 sum = sum + marks[i];	 //Addition of marks
+	 }
+	 
+	 System.out.println("the sum of Marks of the class is  "  +  sum);
+	 
+	}
+	
+	public static void averageOfMarks(double[] marks) {
+		
+		 average = sum /count;//counting average of the class
+		System.out.println("the Average marks of class is " + average);
+	}
+	
+	public static  void maximumMarks(double marks[],String name[]) {
+	
+		for(int i=0;i<count;i++)
+			{
+			if(max<marks[i]) {
+				max = marks[i];
+				name1 = Name[i];
+ 					 }
+				 } 
+		 System.out.println("The maximum marks  is " + max + " Student name is " + name1);
+			
+
+			}
+		
+	public static void studentAboveAverage() {
+		int c = 0;
+		for(int i= 0;i<count;i++) 
+		{
+			
+			if (marks[i]>average) {//number of student who scored above average
+				c++;
+			}
+		}
+		System.out.println("the number of student who got above average is "  +  c);
+
+	}
+	
+	public static void nearestToAverage() {
+		
+		double a = 0;
+		double b = 0;
+		double c = average;
+		double d = 0;
+		for (int i = 0;i<count;i++) {//finding student whose marks are nearest to average
+			if (average > marks[i]) {
+				a = marks[i];
+				
+			}else if(average<marks[i]){
+			b = marks[i];
+			
+			}
+		}
+		d = a - average;
+		double f = average - b;
+		
+	if(d>f) {
+		System.out.println("the nearest value to  " + average + " is " + a);
+		
+	}else if(f>d) {
+		System.out.println("the nearest value to " + average  + " is " + b);
+		}
+	}
+	
+	public static void findName()
+	{
+		Scanner inputName = new Scanner(System.in);
+		
+		System.out.println("enter the name of student you want to search");
+		String searchName= inputName.next();//inserting name of student
+		for(int i =0;i<count;i++) {
+			if(searchName.equalsIgnoreCase(Name[i])) {//finding whether the name exist in class or not
+				System.out.println("The Student is in the class and name is " +  searchName+"'s marks are  " + marks[i]);
+				
+			}
+		} 
+		
+	}
+	
+	public static void sorting() {
+		for (int i = 0; i < count; i++) //sorting the marks of class in ascending order
+        {
+            for (int j = i + 1; j < count; j++) { 
+                if (marks[i] > marks[j]) 
+                {
+                    temp = marks[i];
+                    marks[i] = marks[j];
+                    marks[j] = temp;
+                }
+            }
+        }
+	
+	System.out.print("Marks in Ascending order are ");
+    for (int i = 0; i < count - 1; i++) 
+    {
+        System.out.print(marks[i] + ", ");
+    }
+    System.out.println(marks[count - 1]);
+}
+	
+}
+
